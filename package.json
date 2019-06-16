@@ -1,11 +1,8 @@
 {
-  "name": "polyvPlayer",
+  "name": "cordova-plugin-engkoo",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "repository": "http://172.16.0.11:8000/menghao/cordova-plugin-polyvplayer.git",
-  "author": "Kenny <menhal@qq.com>",
-  "dependencies": {
-    "glob": "^7.1.3"
-  }
+  "repository": "https://github.com/menhal/cordova-plugin-engkoo.git",
+  "author": "Kenny <menhal@qq.com>"
 }
