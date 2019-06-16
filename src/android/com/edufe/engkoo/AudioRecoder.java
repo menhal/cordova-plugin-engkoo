@@ -11,21 +11,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-/**
- * This class implements the audio playback and recording capabilities used by Cordova.
- * It is called by the AudioHandler Cordova class.
- * Only one file can be played or recorded per class instance.
- *
- * Local audio files must reside in one of two places:
- *      android_asset:      file name must start with /android_asset/sound.mp3
- *      sdcard:             file name is just sound.mp3
- */
+
 public class AudioRecoder  {
 
-    // AudioPlayer modes
     public enum MODE { NONE, PLAY, RECORD };
 
-    // AudioPlayer states
     public enum STATE { MEDIA_NONE,
         MEDIA_STARTING,
         MEDIA_RUNNING,
@@ -36,21 +26,16 @@ public class AudioRecoder  {
 
     private static final String LOG_TAG = "AudioPlayer";
 
-    private CordovaPlugin handler;           // The AudioHandler object
-    private STATE state = STATE.MEDIA_NONE; // State of recording or playback
+    private CordovaPlugin handler;           
+    private STATE state = STATE.MEDIA_NONE; 
 
-    private String audioFile = null;        // File name to play or record to
+    private String audioFile = null;  
 
-    private MediaRecorder recorder = null;  // Audio recording object
-    private LinkedList<String> tempFiles = null; // Temporary recording file name
+    private MediaRecorder recorder = null; 
+    private LinkedList<String> tempFiles = null; 
     private String tempFile = null;
 
-    /**
-     * Constructor.
-     *
-     * @param handler           The audio handler object
-     * @param id                The id of this audio player
-     */
+
     public AudioRecoder(CordovaPlugin handler, String id, String file) {
         this.handler = handler;
         this.audioFile = file;
@@ -67,9 +52,6 @@ public class AudioRecoder  {
         return tempFileName;
     }
 
-    /**
-     * Destroy player and stop audio playing or recording.
-     */
     public void destroy() {
         if (this.recorder != null) {
             this.stopRecording();
@@ -78,11 +60,6 @@ public class AudioRecoder  {
         }
     }
 
-    /**
-     * Start recording the specified file.
-     *
-     * @param file              The name of the file
-     */
     public void startRecording(String file) {
         this.audioFile = file;
         this.recorder = new MediaRecorder();
@@ -102,13 +79,7 @@ public class AudioRecoder  {
         }
     }
 
-    /**
-     * Save temporary recorded file to specified name
-     *
-     * @param file
-     */
-    public void moveFile(String file) {
-        /* this is a hack to save the file as the specified name */
+    public String moveFile(String file) {
 
         if (!file.startsWith("/")) {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -121,12 +92,11 @@ public class AudioRecoder  {
         String logMsg = "renaming " + this.tempFile + " to " + file;
         File f = new File(this.tempFile);
         if (!f.renameTo(new File(file))) LOG.e(LOG_TAG, "FAILED " + logMsg);
+
+        return file;
     }
 
-    /**
-     * Stop/Pause recording and save to the file specified when recording started.
-     */
-    public void stopRecording() {
+    public String stopRecording() {
         if (this.recorder != null) {
             try{
                 if (this.state == STATE.MEDIA_RUNNING) {
@@ -136,12 +106,14 @@ public class AudioRecoder  {
                 if (!this.tempFiles.contains(this.tempFile)) {
                     this.tempFiles.add(this.tempFile);
                 }
-                this.moveFile(this.audioFile);
+                return this.moveFile(this.audioFile);
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        return "";
     }
 
 }
