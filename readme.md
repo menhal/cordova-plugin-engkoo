@@ -4,7 +4,7 @@
 ## 怎么安装
 
 ~~~
-cordova plugin add ../../cordova-plugin-engkoo
+cordova plugin add https://github.com/menhal/cordova-plugin-engkoo
 ~~~
 
 安装完之后需要用xcode打开ios项目然后进行如下设置 ，否则编译会报错
