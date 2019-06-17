@@ -19,12 +19,7 @@
     
     NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-bingdict";
     
-    NSDictionary *options = @{
-                              @"hideurlbar": @"yes",
-                              @"hidenavigationbuttons": @"yes",
-                              @"toolbarcolor": @"#ffffff",
-                              @"toolbarposition": @"top"
-                              };
+    NSString *options = @"hideurlbar=yes&,hidenavigationbuttons=yes,toolbarcolor=#ffffff,toolbarposition=top,closebuttoncaption=关闭,location=no";
 
     NSArray *args =   [NSArray arrayWithObjects: address, @"_blank", options, nil];
     

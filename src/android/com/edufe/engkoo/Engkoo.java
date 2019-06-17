@@ -13,7 +13,6 @@ import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.media.AudioHandler;
 
 import java.io.File;
 import java.io.FileInputStream;
