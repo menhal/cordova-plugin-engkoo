@@ -20,6 +20,21 @@
                 <param name="ios-package" value="Engkoo"/>
             </feature>
         </config-file>
+
+        <header-file src="src/ios/Engkoo.h" />
+        <source-file src="src/ios/Engkoo.m" />
+
+        <header-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridge_JS.h" />
+        <source-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridge_JS.m" />
+
+        <header-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridge.h" />
+        <source-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridge.m" />
+
+        <header-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridgeBase.h" />
+        <source-file src="src/ios/WebViewJavascriptBridge/WebViewJavascriptBridgeBase.m" />
+
+        <header-file src="src/ios/WebViewJavascriptBridge/WKWebViewJavascriptBridge.h" />
+        <source-file src="src/ios/WebViewJavascriptBridge/WKWebViewJavascriptBridge.m" />
         
     </platform>
 
@@ -39,6 +54,20 @@
             </feature>
         </config-file>
 
+        <source-file src="src/android/com/edufe/engkoo/AudioRecoder.java" target-dir="src/com/edufe/engkoo" />
+        <source-file src="src/android/com/edufe/engkoo/Engkoo.java" target-dir="src/com/edufe/engkoo" />
+        <source-file src="src/android/com/edufe/engkoo/EngkooDialog.java" target-dir="src/com/edufe/engkoo" />
+
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/BridgeHandler.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/BridgeUtil.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/BridgeWebView.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/BridgeWebViewClient.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/CallBackFunction.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/DefaultHandler.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/Message.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        <source-file src="src/android/com/github/lzyzsd/jsbridge/WebViewJavascriptBridge.java" target-dir="src/com/github/lzyzsd/jsbridge" />
+        
+        <resource-file src="src/android/WebViewJavascriptBridge.js" target="assets/WebViewJavascriptBridge.js" />
     </platform>
 
 </plugin>
