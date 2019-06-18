@@ -21,6 +21,10 @@
             </feature>
         </config-file>
 
+        <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+            <string>获取麦克风权限</string>
+        </config-file>
+
         <header-file src="src/ios/Engkoo.h" />
         <source-file src="src/ios/Engkoo.m" />
 
