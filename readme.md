@@ -21,3 +21,7 @@ var token = "{\"access_token\":\"aDDW4rtAlN04q617L3AwLJ7Jd-vTL3IJLApzipPxCd8bfl2
 Engkoo.show(token);
 
 ~~~
+
+
+## token获取地址
+$.post("https://dev-mtutor.chinacloudsites.cn/proxy/oauth/login", {grant_type:"XFX", id:32, secret:"55F51592-A7AF-461B-B52C-54CE07B3ED05"})
