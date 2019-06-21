@@ -17,7 +17,7 @@
     self.inAppBrowser = [[CDVInAppBrowser alloc] init];
     [self.inAppBrowser pluginInitialize];
     
-    NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-bingdict";
+    NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-xinfangxiang";
     
     NSString *options = @"hideurlbar=yes&,hidenavigationbuttons=yes,toolbarcolor=#ffffff,toolbarposition=top,closebuttoncaption=关闭,location=no";
 

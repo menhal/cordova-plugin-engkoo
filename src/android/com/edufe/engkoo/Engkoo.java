@@ -21,7 +21,8 @@ public class Engkoo extends CordovaPlugin implements Runnable, BridgeHandler{
 
     EngkooDialog dialog = null;
     String accessToken = "";
-    String engkooHomeUrl = "https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=android-bingdict";
+    String engkooHomeUrl = "https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=android-xinfangxiang
+    ";
     AudioRecoder audioHandler = null;
 
 
