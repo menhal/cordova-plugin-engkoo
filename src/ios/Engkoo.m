@@ -118,6 +118,8 @@
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err = nil;
     [audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&err];
+    [audioSession overrideOutputAudioPort: AVAudioSessionPortOverrideSpeaker error:&err];
+    
     if(err){
         NSLog(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
         return;
