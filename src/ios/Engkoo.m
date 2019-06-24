@@ -4,6 +4,8 @@
 #import "CDVInAppBrowser.h"
 #import "WebViewJavascriptBridge.h"
 
+#define    TOOLBAR_HEIGHT 44.0
+#define    STATUSBAR_HEIGHT 20.0
 #define DOCUMENTS_FOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 @implementation Engkoo
@@ -12,24 +14,18 @@
 {
     NSString *token = [command.arguments objectAtIndex:0];
     
-
-    
-    self.inAppBrowser = [[CDVInAppBrowser alloc] init];
-    [self.inAppBrowser pluginInitialize];
-    
     NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-xinfangxiang";
     
-    NSString *options = @"hideurlbar=yes&,hidenavigationbuttons=yes,toolbarcolor=#ffffff,toolbarposition=top,closebuttoncaption=关闭,location=no";
-
-    NSArray *args =   [NSArray arrayWithObjects: address, @"_blank", options, nil];
+    [self initView];
     
-    CDVInvokedUrlCommand *cmd = [[CDVInvokedUrlCommand alloc] initWithArguments: args callbackId: command.callbackId className:@"InAppBrowser" methodName:@"open"];
     
-    [self.inAppBrowser open:cmd];
-    
+    NSURL* url = [NSURL URLWithString:address];
+    NSURLRequest* request = [NSURLRequest requestWithURL: url];
+    [_webview loadRequest:request];
     
     [WebViewJavascriptBridge enableLogging];
-    _bridge = [WebViewJavascriptBridge bridgeForWebView: self.inAppBrowser.inAppBrowserViewController.webView];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_webview];
     [_bridge setWebViewDelegate:self];
     
     [_bridge registerHandler:@"Log_In" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -66,6 +62,50 @@
 }
 
 
+- (void) initView {
+    
+    UIViewController *rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+    
+    UIView *rootView = rootViewController.view ;
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    
+    _containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    
+    _containerView.backgroundColor = UIColor.blueColor;
+    
+    [rootView addSubview:_containerView];
+    
+    /////////  toolbar
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, TOOLBAR_HEIGHT+STATUSBAR_HEIGHT)];
+    
+    toolbar.tintColor = [UIColor blackColor];
+    toolbar.backgroundColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone target:self action:@selector(close)];
+    
+    UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithTitle:@"微软小英" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    toolbar.items = @[cancelButton, flexibleSpaceItem, titleItem, flexibleSpaceItem, flexibleSpaceItem];
+    
+    [_containerView addSubview:toolbar];
+    
+    
+    //////  webview
+    _webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, frame.size.width, frame.size.height - 64)];
+    _webview.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    
+    [_containerView addSubview:_webview];
+}
+
+
+- (void) close{
+    NSLog(@"close");
+    
+    [_containerView removeFromSuperview];
+}
 
 - (void)startRecordingAudio
 {
@@ -125,6 +165,7 @@
         return;
     }
     [audioSession setActive:YES error:&err];
+    
     err = nil;
     if(err){
         NSLog(@"audioSession: %@ %d %@", [err domain], [err code], [[err userInfo] description]);
@@ -140,8 +181,7 @@
     [recordSetting setValue :[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
     [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
     [recordSetting setValue :[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    
-    
+
     
     // Create a new dated file
     NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
