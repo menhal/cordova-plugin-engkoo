@@ -86,7 +86,7 @@
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone target:self action:@selector(close)];
     
-    UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithTitle:@"微软小英" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithTitle:@"新方向小新" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     toolbar.items = @[cancelButton, flexibleSpaceItem, titleItem, flexibleSpaceItem, flexibleSpaceItem];
     
