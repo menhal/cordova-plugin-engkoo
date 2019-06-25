@@ -2,33 +2,34 @@ package com.edufe.engkoo;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.WindowManager;
-import android.webkit.WebView;
+import android.view.View;
+import android.widget.Button;
+
+import com.github.lzyzsd.jsbridge.BridgeWebView;
 
 public class EngkooDialog extends Dialog {
 
-    private WebView webview = null;
+    public BridgeWebView webview = null;
 
     public EngkooDialog(Context context) {
+
+
         super(context, android.R.style.Theme_NoTitleBar);
-        this.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+
+        setContentView(getIdentifier("engkoodialog", "layout"));
+
+        webview = (BridgeWebView) findViewById("webview");
+
+        Button button = (Button) findViewById("close");
+
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                dismiss();
+            }
+        });
     }
 
-
-    @Override
-    public void show(){
-        super.show();
-
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(this.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        this.addContentView(webview, lp);
-    }
-
-    public void setWebview(WebView webview) {
-        this.webview = webview;
-    }
 
     public void onBackPressed () {
 
@@ -38,5 +39,34 @@ public class EngkooDialog extends Dialog {
             this.dismiss();
         }
 
+    }
+
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+    }
+
+
+    /**
+     * findViewById
+     *
+     * @param viewId
+     * @return
+     */
+    private View findViewById(String viewId) {
+        return this.findViewById(getIdentifier(viewId, "id"));
+    }
+
+    /**
+     * getIdentifier
+     *
+     * @param viewId
+     * @param type
+     * @return
+     */
+    private int getIdentifier(String viewId, String type) {
+        Context activity = this.getContext();
+        return activity.getResources().getIdentifier(viewId, type, activity.getPackageName());
     }
 }

@@ -79,6 +79,7 @@
         <source-file src="src/android/com/github/lzyzsd/jsbridge/WebViewJavascriptBridge.java" target-dir="src/com/github/lzyzsd/jsbridge" />
         
         <resource-file src="src/android/WebViewJavascriptBridge.js" target="assets/WebViewJavascriptBridge.js" />
+        <resource-file src="src/android/res/layout/engkoodialog.xml" target="res/layout/engkoodialog.xml" />
     </platform>
 
 </plugin>

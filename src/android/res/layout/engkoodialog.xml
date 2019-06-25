@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@android:color/background_light">
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
+            android:text="关闭" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="新方向小新"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark" />
+
+    </FrameLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.github.lzyzsd.jsbridge.BridgeWebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.github.lzyzsd.jsbridge.BridgeWebView>
+
+    </LinearLayout>
+
+</LinearLayout>

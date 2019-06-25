@@ -10,9 +10,7 @@ import com.github.lzyzsd.jsbridge.CallBackFunction;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,8 +26,6 @@ public class Engkoo extends CordovaPlugin implements Runnable, BridgeHandler{
     @Override
     protected void pluginInitialize() {
         audioHandler = new AudioRecoder(this, "engkoo", "engkoo.amr");
-//        audioHandler.webView = this.webView;
-//        audioHandler.cordova = this.cordova;
     }
 
     @Override
@@ -47,10 +43,8 @@ public class Engkoo extends CordovaPlugin implements Runnable, BridgeHandler{
     @Override
     public void run(){
 
-        BridgeWebView webView = new BridgeWebView(cordova.getActivity());
-
         dialog = new EngkooDialog(cordova.getActivity());
-        dialog.setWebview(webView);
+        BridgeWebView webView = dialog.webview;
 
         webView.loadUrl(engkooHomeUrl);
         webView.registerHandler("voiceRequestFromWeb", this);
