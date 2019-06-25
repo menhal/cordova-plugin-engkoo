@@ -12,6 +12,10 @@
 
 - (void) show:(CDVInvokedUrlCommand*)command
 {
+    if(_containerView != nil){
+        return;
+    }
+    
     NSString *token = [command.arguments objectAtIndex:0];
     
     NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-xinfangxiang";
@@ -88,7 +92,9 @@
     
     UIBarButtonItem *titleItem = [[UIBarButtonItem alloc] initWithTitle:@"新方向小新" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    toolbar.items = @[cancelButton, flexibleSpaceItem, titleItem, flexibleSpaceItem, flexibleSpaceItem];
+    UIBarButtonItem *cancelButton2 = [[UIBarButtonItem alloc] initWithTitle:@"   " style:UIBarButtonItemStyleDone target:self action:@selector(noAction)];
+    
+    toolbar.items = @[cancelButton, flexibleSpaceItem, titleItem, flexibleSpaceItem, cancelButton2];
     
     [_containerView addSubview:toolbar];
     
@@ -105,6 +111,7 @@
     NSLog(@"close");
     
     [_containerView removeFromSuperview];
+    _containerView = nil;
 }
 
 - (void)startRecordingAudio
@@ -243,6 +250,10 @@
     
 }
 
+
+- (void) noAction{
+    
+}
 
 @end
 
