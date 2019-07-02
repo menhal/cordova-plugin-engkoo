@@ -18,7 +18,7 @@
     
     NSString *token = [command.arguments objectAtIndex:0];
     
-    NSString *address = @"https://dev-mtutor.chinacloudsites.cn/dist/app-scenario-lesson/?origin=ios-xinfangxiang";
+    NSString *address = @"https://app.mtutor.engkoo.com/dist/app-scenario-lesson/?origin=ios-xinfangxiang";
     
     [self initView];
     
