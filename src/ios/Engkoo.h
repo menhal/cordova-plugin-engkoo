@@ -12,7 +12,7 @@
 @property WebViewJavascriptBridge* bridge;
 @property AVAudioRecorder *audioRecorder;
 @property UIView *containerView;
-@property UIWebView *webview;
+@property WKWebView *webview;
 
 - (void) show:(CDVInvokedUrlCommand*) command;
 
